@@ -4,17 +4,23 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                sh 'npm install'
+                dir('client') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Build') {
             steps {
-                sh 'npm run build || echo "No build script defined"'
+                dir('client') {
+                    sh 'npm run build || echo "No build script defined"'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'npm test || echo "No tests defined"'
+                dir('client') {
+                    sh 'npm test || echo "No tests defined"'
+                }
             }
         }
     }
