@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone repository') {
+            steps {
+                // This pulls your GitHub repo into the Jenkins workspace
+                git url: 'https://github.com/hax147/YoungDevInterns_DevvOps_Tasks.git', branch: 'main'
+            }
+        }
+
         stage('Install dependencies') {
             steps {
                 dir('client') {
@@ -9,6 +16,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build') {
             steps {
                 dir('client') {
@@ -16,6 +24,7 @@ pipeline {
                 }
             }
         }
+
         stage('Test') {
             steps {
                 dir('client') {
